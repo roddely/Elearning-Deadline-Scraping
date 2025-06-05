@@ -8,6 +8,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
+
 
 
 # Read password.txt file
@@ -38,17 +40,24 @@ except Exception as e:
     exit(1)
 
 # Access the dashboard page
+timeline = None
 try:
     driver.get("https://elearning.tdtu.edu.vn/my/")
-    #Wait to have the timeline block loaded
     wait.until(
         EC.presence_of_element_located((By.CSS_SELECTOR, "section.block_timeline #page-container-3 .event-name-container"))
     )
     timeline_element = driver.find_element(By.CSS_SELECTOR, "section.block_timeline")
-
     timeline = timeline_element.get_attribute("outerHTML")
+except (TimeoutException, NoSuchElementException):
+    print("No upcoming deadlines found or timeline not loaded in time.")
+    timeline = """
+    <div style="font-size:16px;color:#333;padding:20px;text-align:center;">
+        <p><strong>No upcoming deadlines</strong></p>
+        <p>You're all caught up! 🎉</p>
+    </div>
+    """
 except Exception as e:
-    print(f"Error accessing dashboard: {e}")
+    print(f"Unexpected error accessing dashboard: {e}")
     driver.quit()
     exit(1)
 
