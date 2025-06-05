@@ -31,9 +31,9 @@ pip install -r requirements.txt
 
 ### 3. Fill in the password.txt file.
 
-Line 1: Your TDTU email or username
-Line 2: Your TDTU password
-⚠️ Do not include extra spaces or blank lines.
+- Line 1: Your TDTU email or username
+- Line 2: Your TDTU password
+- ⚠️ Do not include extra spaces or blank lines.
 
 
 ### Running the Script
