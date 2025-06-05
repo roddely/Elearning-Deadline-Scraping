@@ -19,7 +19,7 @@ This Python script (`deadLine_widget.py`) automatically scrapes upcoming assignm
 ### 1. Clone the Repository
 
 ```bash
-https://github.com/roddely/Elearning-Deadline-Scraping.git
+git clone https://github.com/roddely/Elearning-Deadline-Scraping.git
 cd your-repo-name
 ```
 
